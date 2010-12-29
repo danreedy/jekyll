@@ -213,6 +213,8 @@ module Jekyll
         "categories" => self.categories,
         "next"       => self.next,
         "previous"   => self.previous,
+        "next_in_category"  => self.next_in_category,
+        "previous_in_category"  => self.previous_in_category,
         "tags"       => self.tags,
         "content"    => self.content })
     end
@@ -235,6 +237,36 @@ module Jekyll
       pos = self.site.posts.index(self)
       if pos && pos > 0
         self.site.posts[pos-1]
+      else
+        nil
+      end
+    end
+    
+    def next_in_category
+      pos = self.site.posts.index(self)
+
+      if pos
+        next_post = nil 
+        while pos < self.site.posts.length-1
+          next_post = self.site.posts[pos+1] and break if self.categories == self.site.posts[pos+1].categories
+          pos += 1
+        end
+        return next_post
+      else
+        nil
+      end
+    end
+    
+    def previous_in_category
+      pos = self.site.posts.index(self)
+      
+      if pos
+        previous_post = nil
+        while pos > 0
+          previous_post = self.site.posts[pos-1] and break if self.categories == self.site.posts[pos-1].categories
+          pos -= 1
+        end
+        return previous_post
       else
         nil
       end
