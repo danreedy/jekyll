@@ -39,3 +39,9 @@ h2. Developer Dependencies
 h2. License
 
 See LICENSE.
+
+h2. This Fork
+
+This fork was created to add additional functionality for categories. With this fork you can specify categories that will be "categorized" into pages. This is a very initial modification and is more a proof of concept than anything else.
+
+In order for this to work you must modify the *_config.yml* file of your site to include something like __categorization: *category*__ and you must run your jekyll command with _--pagination <num>_
